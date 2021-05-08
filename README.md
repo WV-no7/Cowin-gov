@@ -5,4 +5,4 @@ This uses the Public COWIN Public API's provided by Ministry of Health and Famil
 Currently supports districts in Karnataka only. Will extend to other regions shortly.
 
 Visit live page:
-https://cowin-gov.web.app/ 
+<a href="https://cowin-gov.web.app/ ">https://cowin-gov.web.app/</a>
