@@ -16,14 +16,21 @@
     <body style="margin: 25px;">
         <div id="sampleDemo" class="demo-padding demo-container">
             <h3 style="font-weight: bold;" >Vaccination centers available for <span><oj-bind-text value="[[selectedDate]]"></oj-bind-text></span></h3>
-            <div style="min-width: 100%;">
-                <div style="max-width:30%">
-                
+            <div class="oj-sm-flex-items-0 oj-flex">
+                <div style="min-width: 200px; max-width: 300px">
                     <oj-label for="date">Select Date</oj-label>
                     <oj-input-date id="date" value='{{selectedDate}}' on-value-changed="[[callAPI]]" style="max-width: 12rem">
                     </oj-input-date>
                 </div>
-                    <div style="max-width:30%">
+                <div style="border-left: 1px solid #e0e1e1;">
+
+                </div>
+                <div class="oj-panel oj-flex-item oj-sm-padding-2x-horizontal" style="min-width: 350px; margin-bottom: 12px; margin-left: 30px;">
+                    <oj-buttonset-one class="oj-buttonset-width-auto" value="{{searchBy}}">
+                        <oj-option id="toggleByDistrict" value="byDistrict">By District</oj-option>
+                        <oj-option id="toggleByPincode" value="byPincode">By Pincode</oj-option>
+                    </oj-buttonset-one>
+                    <oj-bind-if test="[[searchBy() === 'byDistrict']]">
                         <oj-label for="district">Select District</oj-label>
                         <oj-select-single id="district"
                             data="[[districtArrayData]]"
@@ -31,21 +38,22 @@
                             on-value-changed="[[callAPI]]"
                             style="max-width: 20rem">
                         </oj-select-single>
-                        <!--<oj-button id="byDistrict" class="oj-button-sm">
+                        <oj-button id="byDistrict" class="oj-button-sm" on-oj-action="[[callAPI]]">
                             Search By District
                         </oj-button>
-                        <h3> OR </h3>
+                    </oj-bind-if>
+                    <oj-bind-if test="[[searchBy() === 'byPincode']]">
                         <oj-label for="pincode">Enter Pincode</oj-label>
                         <oj-input-number id="pincode" 
                             value="{{pincode}}" 
                             min=110001 
-                            max=999999 
-                            step=0>
+                            max=999999 >
                         </oj-input-number>
-                        <oj-button id="byPincode" class="oj-button-sm">
+                        <oj-button id="byPincode" class="oj-button-sm"on-oj-action="[[callAPI]]">
                             Search by Pincode
-                        </oj-button>-->
-                    </div>
+                        </oj-button>
+                    </oj-bind-if>
+                </div>
             </div>
             <div id="componentDemoContent" style="width: 1px; min-width: 100%;">
                 

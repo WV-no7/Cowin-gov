@@ -6,7 +6,7 @@ function (require, exports, ko, Bootstrap, ArrayDataProvider, ConverterUtilsI18n
         var self = this;
         self.centerObservableArray = ko.observableArray();
         self.pincode = ko.observable();
-        self.clickedButton = ko.observable("byDistrict");
+        self.searchBy = ko.observable("byDistrict");
         self.stateArray = [
             {
                 "state_id": 1,
@@ -300,11 +300,6 @@ function (require, exports, ko, Bootstrap, ArrayDataProvider, ConverterUtilsI18n
         self.selectedDate = ko.observable(ConverterUtilsI18n.IntlConverterUtils.dateToLocalIso(new Date(d.getFullYear(),d.getMonth(),d.getDate()+1)));
         //console.log(self.selectedDate());
 
-        self.buttonClick = (event) => {
-            self.clickedButton(event.currentTarget.id);
-            self.callAPI();
-            return true;
-        };
 
         self.callAPI = function(){
             self.month = ko.observable(self.selectedDate().split("T")[0].split("-")[1]);
@@ -319,8 +314,8 @@ function (require, exports, ko, Bootstrap, ArrayDataProvider, ConverterUtilsI18n
                     }
                 }
             }
-            if(self.clickedButton() === "byDistrict")  request.open('GET', "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id="+self.selectedDistrict()+"&date="+self.tomorrow()+"-"+self.month()+"-2021", true);
-            else if(self.clickedButton() === "byPincode")                 request.open('GET', "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode="+self.pincode()+"&date="+self.tomorrow()+"-"+self.month()+"-2021", true);
+            if(self.searchBy() === "byDistrict")        request.open('GET', "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id="+self.selectedDistrict()+"&date="+self.tomorrow()+"-"+self.month()+"-2021", true);
+            else if(self.searchBy() === "byPincode")    request.open('GET', "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode="+self.pincode()+"&date="+self.tomorrow()+"-"+self.month()+"-2021", true);
             
             request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
             request.send();
