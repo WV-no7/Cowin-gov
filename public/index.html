@@ -22,14 +22,13 @@
                     <oj-input-date id="date" value='{{selectedDate}}' on-value-changed="[[callAPI]]" style="max-width: 12rem">
                     </oj-input-date>
                 </div>
-                <div style="border-left: 1px solid #e0e1e1;">
-
-                </div>
+                <div style="border-left: 1px solid #e0e1e1;"></div>
                 <div class="oj-panel oj-flex-item oj-sm-padding-2x-horizontal" style="min-width: 350px; margin-bottom: 12px; margin-left: 30px;">
-                    <oj-buttonset-one class="oj-buttonset-width-auto" value="{{searchBy}}">
+                    <oj-buttonset-one class="oj-buttonset-width-auto" style="padding-bottom: 12px;" value="{{searchBy}}">
                         <oj-option id="toggleByDistrict" value="byDistrict">By District</oj-option>
                         <oj-option id="toggleByPincode" value="byPincode">By Pincode</oj-option>
                     </oj-buttonset-one>
+
                     <oj-bind-if test="[[searchBy() === 'byDistrict']]">
                         <oj-label for="district">Select District</oj-label>
                         <oj-select-single id="district"
@@ -38,18 +37,18 @@
                             on-value-changed="[[callAPI]]"
                             style="max-width: 20rem">
                         </oj-select-single>
-                        <oj-button id="byDistrict" class="oj-button-sm" on-oj-action="[[callAPI]]">
-                            Search By District
-                        </oj-button>
                     </oj-bind-if>
                     <oj-bind-if test="[[searchBy() === 'byPincode']]">
                         <oj-label for="pincode">Enter Pincode</oj-label>
-                        <oj-input-number id="pincode" 
+                        <oj-input-text id="pincode" 
                             value="{{pincode}}" 
-                            min=110001 
-                            max=999999 >
-                        </oj-input-number>
-                        <oj-button id="byPincode" class="oj-button-sm"on-oj-action="[[callAPI]]">
+                            raw-value={{rawPincode}} 
+                            on-raw-value-changed="[[verifyPincode]]"
+                            length.max="6"
+                            clear-icon="always">
+                        </oj-input-text>
+                        <p><span><oj-bind-text value="[[pincodeError]]"></oj-bind-text></span></p>
+                        <oj-button id="byPincode" class="oj-button-sm" on-oj-action="[[callAPI]]" style="margin-top: 7px;" disabled="{{isPincodeValid}}">
                             Search by Pincode
                         </oj-button>
                     </oj-bind-if>

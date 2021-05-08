@@ -6,7 +6,11 @@ function (require, exports, ko, Bootstrap, ArrayDataProvider, ConverterUtilsI18n
         var self = this;
         self.centerObservableArray = ko.observableArray();
         self.pincode = ko.observable();
+        self.rawPincode = ko.observable();
+        self.pincodeError = ko.observable();
+        self.isPincodeValid = ko.observable("true");
         self.searchBy = ko.observable("byDistrict");
+
         self.stateArray = [
             {
                 "state_id": 1,
@@ -287,7 +291,7 @@ function (require, exports, ko, Bootstrap, ArrayDataProvider, ConverterUtilsI18n
 
         self.selectedDistrict = ko.observable(294);
 
-        this.districtArrayData = new ArrayDataProvider(this.districtArray, {
+        self.districtArrayData = new ArrayDataProvider(self.districtArray, {
             keyAttributes: "district_id", 
         });
 
@@ -300,6 +304,16 @@ function (require, exports, ko, Bootstrap, ArrayDataProvider, ConverterUtilsI18n
         self.selectedDate = ko.observable(ConverterUtilsI18n.IntlConverterUtils.dateToLocalIso(new Date(d.getFullYear(),d.getMonth(),d.getDate()+1)));
         //console.log(self.selectedDate());
 
+        self.verifyPincode = function(){
+            if(isNaN(self.rawPincode()) || self.rawPincode() < 110001 || self.rawPincode() >999999 ){
+                if(self.rawPincode() === "") self.pincodeError("Please enter pincode.");
+                else    self.pincodeError("Invalid Pincode.");
+                self.isPincodeValid("true");
+            }else{
+                self.pincodeError("");
+                self.isPincodeValid("");
+            }
+        }
 
         self.callAPI = function(){
             self.month = ko.observable(self.selectedDate().split("T")[0].split("-")[1]);
