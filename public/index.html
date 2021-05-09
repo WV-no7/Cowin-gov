@@ -30,6 +30,13 @@
                     </oj-buttonset-one>
 
                     <oj-bind-if test="[[searchBy() === 'byDistrict']]">
+                        <oj-label for="state">Select State</oj-label>
+                        <oj-select-single id="state"
+                            data="[[stateArrayData]]"
+                            value="{{selectedState}}"
+                            on-value-changed="[[setDistrict]]"
+                            style="max-width: 20rem">
+                        </oj-select-single>
                         <oj-label for="district">Select District</oj-label>
                         <oj-select-single id="district"
                             data="[[districtArrayData]]"
@@ -37,6 +44,9 @@
                             on-value-changed="[[callAPI]]"
                             style="max-width: 20rem">
                         </oj-select-single>
+                        <!-- <oj-button id="byDistrict" class="oj-button-sm" on-oj-action="[[callAPI]]" style="margin-top: 7px;" disabled="{{isDistrictValid}}">
+                            Search by District
+                        </oj-button> -->
                     </oj-bind-if>
                     <oj-bind-if test="[[searchBy() === 'byPincode']]">
                         <oj-label for="pincode">Enter Pincode</oj-label>
