@@ -3,7 +3,6 @@
     <head>
 		<title> Covid-19 Vaccination centers</title>
 		<meta charset="utf-8">
-		
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">		
 		<link rel="stylesheet" href="https://static.oracle.com/cdn/jet/v8.0.0/default/css/alta/oj-alta-min.css">
 		<script 
@@ -12,6 +11,7 @@
 			src="https://static.oracle.com/cdn/jet/v8.0.0/3rdparty/require/require.js"
 		></script>	
 		<script type="text/javascript" src="https://static.oracle.com/cdn/jet/v8.0.0/default/js/bundles-config.js"></script>
+
 	</head>
     <body style="margin: 25px;">
         <div id="sampleDemo" class="demo-padding demo-container">
@@ -67,42 +67,42 @@
             <div id="componentDemoContent" style="width: 1px; min-width: 100%;">
                 
                 <oj-table id='table' style="margin: 10px;"aria-label='Available Centers'
-                                              data='[[dataprovider]]'
-                                              selection-mode='{"row": "multiple", "column": "multiple"}'
-                                              dnd='{"reorder": {"columns": "enabled"}}'
-                                              scroll-policy='loadMoreOnScroll'
-                                              scroll-policy-options='{"fetchSize": 10}'
-                                              columns='[{"headerText": "Center Name", 
-                                                         "field": "name",
-                                                         "headerClassName": "oj-sm-only-hide",
-                                                         "className": "oj-sm-only-hide",
-                                                         "resizable": "enabled"},
-                                                        {"headerText": "Address", 
-                                                         "field": "address",
-                                                         "headerClassName": "oj-sm-only-hide",
-                                                         "className": "oj-sm-only-hide",
-                                                         "resizable": "enabled"},
-                                                         {"headerText": "Pincode", 
-                                                         "field": "pincode",
-                                                         "headerClassName": "oj-sm-only-hide",
-                                                         "className": "oj-sm-only-hide",
-                                                         "resizable": "enabled"},
-                                                        {"headerText": "Available seats", 
-                                                         "field": "available_capacity",
-                                                         "headerClassName": "oj-sm-only-hide",
-                                                         "className": "oj-sm-only-hide",
-                                                         "resizable": "enabled"},
-                                                        {"headerText": "Min Age", 
-                                                         "field": "min_age_limit",
-                                                         "headerClassName": "oj-sm-only-hide",
-                                                         "className": "oj-sm-only-hide",
-                                                         "resizable": "enabled"},
-                                                         {"headerText": "Vaccine", 
-                                                          "field": "vaccine",
-                                                          "headerClassName": "oj-sm-only-hide",
-                                                          "className": "oj-sm-only-hide",
-                                                          "resizable": "enabled"}]'
-                                              class='demo-table-container oj-bg-body'>
+                        data='[[dataprovider]]'
+                        selection-mode='{"row": "multiple", "column": "multiple"}'
+                        dnd='{"reorder": {"columns": "enabled"}}'
+                        scroll-policy='loadMoreOnScroll'
+                        scroll-policy-options='{"fetchSize": 10}'
+                        columns='[{"headerText": "Center Name", 
+                                    "field": "name",
+                                    "headerClassName": "oj-sm-only-hide",
+                                    "className": "oj-sm-only-hide",
+                                    "resizable": "enabled"},
+                                {"headerText": "Address", 
+                                    "field": "address",
+                                    "headerClassName": "oj-sm-only-hide",
+                                    "className": "oj-sm-only-hide",
+                                    "resizable": "enabled"},
+                                    {"headerText": "Pincode", 
+                                    "field": "pincode",
+                                    "headerClassName": "oj-sm-only-hide",
+                                    "className": "oj-sm-only-hide",
+                                    "resizable": "enabled"},
+                                {"headerText": "Available seats", 
+                                    "field": "available_capacity",
+                                    "headerClassName": "oj-sm-only-hide",
+                                    "className": "oj-sm-only-hide",
+                                    "resizable": "enabled"},
+                                {"headerText": "Min Age", 
+                                    "field": "min_age_limit",
+                                    "headerClassName": "oj-sm-only-hide",
+                                    "className": "oj-sm-only-hide",
+                                    "resizable": "enabled"},
+                                    {"headerText": "Vaccine", 
+                                    "field": "vaccine",
+                                    "headerClassName": "oj-sm-only-hide",
+                                    "className": "oj-sm-only-hide",
+                                    "resizable": "enabled"}]'
+                        class='demo-table-container oj-bg-body'>
               </oj-table>
 
             </div>
