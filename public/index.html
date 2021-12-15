@@ -4,18 +4,30 @@
 		<title> Covid-19 Vaccination centers</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">		
-		<link rel="stylesheet" href="https://static.oracle.com/cdn/jet/v8.0.0/default/css/alta/oj-alta-min.css">
-		<script 
+		<!-- <link rel="stylesheet" href="https://static.oracle.com/cdn/jet/v8.0.0/default/css/alta/oj-alta-min.css"> -->
+		<link rel="stylesheet" href="https://static.oracle.com/cdn/jet/10.0.0/default/css/redwood/oj-redwood-min.css">
+		<!-- <script 
 			type="text/javascript"
 			data-main="cowinApi"
 			src="https://static.oracle.com/cdn/jet/v8.0.0/3rdparty/require/require.js"
+		></script>	 -->
+        <script 
+			type="text/javascript"
+			data-main="cowinApi"
+			src="https://static.oracle.com/cdn/jet/10.0.0/3rdparty/require/require.js"
 		></script>	
-		<script type="text/javascript" src="https://static.oracle.com/cdn/jet/v8.0.0/default/js/bundles-config.js"></script>
+		<script type="text/javascript" src="https://static.oracle.com/cdn/jet/10.0.0/default/js/bundles-config.js"></script>
 
 	</head>
     <body style="margin: 25px;">
         <div id="sampleDemo" class="demo-padding demo-container">
             <h3 style="font-weight: bold;" >Vaccination centers available for <span><oj-bind-text value="[[selectedDate]]"></oj-bind-text></span></h3>
+            <oj-rating-gauge  
+                    value="3" 
+                    labelled-by="maxValue" 
+                    min="0" max="7"  
+                    size="small">
+                  </oj-rating-gauge>
             <div class="oj-sm-flex-items-0 oj-flex">
                 <div style="min-width: 200px; max-width: 300px">
                     <oj-label for="date">Select Date</oj-label>

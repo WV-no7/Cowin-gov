@@ -1,4 +1,4 @@
-require(["require", "exports", "knockout", "ojs/ojbootstrap", "ojs/ojarraydataprovider", "ojs/ojconverterutils-i18n", "ojs/ojtable", "ojs/ojknockout", "ojs/ojdatetimepicker", "ojs/ojselectcombobox", "ojs/ojselectsingle", "ojs/ojlabel",  "ojs/ojbutton",  "ojs/ojinputnumber"], 
+require(["require", "exports", "knockout", "ojs/ojbootstrap", "ojs/ojarraydataprovider", "ojs/ojconverterutils-i18n", "ojs/ojtable", "ojs/ojgauge", "ojs/ojknockout", "ojs/ojdatetimepicker", "ojs/ojselectcombobox", "ojs/ojselectsingle", "ojs/ojlabel",  "ojs/ojbutton",  "ojs/ojinputnumber"], 
 function (require, exports, ko, Bootstrap, ArrayDataProvider, ConverterUtilsI18n) {
     "use strict";
     
