@@ -19,105 +19,122 @@
 		<script type="text/javascript" src="https://static.oracle.com/cdn/jet/10.0.0/default/js/bundles-config.js"></script>
 
 	</head>
-    <body style="margin: 25px;">
-        <div id="sampleDemo" class="demo-padding demo-container">
-            <h3 style="font-weight: bold;" >Vaccination centers available for <span><oj-bind-text value="[[selectedDate]]"></oj-bind-text></span></h3>
-            <oj-rating-gauge  
-                    value="3" 
-                    labelled-by="maxValue" 
-                    min="0" max="7"  
-                    size="small">
-                  </oj-rating-gauge>
-            <div class="oj-sm-flex-items-0 oj-flex">
-                <div style="min-width: 200px; max-width: 300px">
-                    <oj-label for="date">Select Date</oj-label>
-                    <oj-input-date id="date" value='{{selectedDate}}' on-value-changed="[[callAPI]]" style="max-width: 12rem">
-                    </oj-input-date>
-                </div>
-                <div style="border-left: 1px solid #e0e1e1;"></div>
-                <div class="oj-panel oj-flex-item oj-sm-padding-2x-horizontal" style="min-width: 350px; margin-bottom: 12px; margin-left: 30px;">
-                    <oj-buttonset-one class="oj-buttonset-width-auto" style="padding-bottom: 12px;" value="{{searchBy}}">
-                        <oj-option id="toggleByDistrict" value="byDistrict">By District</oj-option>
-                        <oj-option id="toggleByPincode" value="byPincode">By Pincode</oj-option>
-                    </oj-buttonset-one>
+    <body>
+        <div id="sampleDemo" class="oj-web-applayout-page">
+            <div class="oj-web-applayout-content" style="margin-left: 20px;">
+                <h3 style="font-weight: bold;" >Vaccination centers available for <span><oj-bind-text value="[[selectedDate]]"></oj-bind-text></span></h3>
+                <div class="oj-sm-flex-items-0 oj-flex">
+                    <div style="min-width: 200px; max-width: 300px">
+                        <oj-label for="date">Select Date</oj-label>
+                        <oj-input-date id="date" value='{{selectedDate}}' on-value-changed="[[callAPI]]" style="max-width: 12rem">
+                        </oj-input-date>
+                    </div>
+                    <div style="border-left: 1px solid #e0e1e1;"></div>
+                    <div class="oj-panel oj-flex-item oj-sm-padding-2x-horizontal" style="min-width: 350px; margin-bottom: 12px; margin-left: 30px;">
+                        <oj-buttonset-one class="oj-buttonset-width-auto" style="padding-bottom: 12px;" value="{{searchBy}}">
+                            <oj-option id="toggleByDistrict" value="byDistrict">By District</oj-option>
+                            <oj-option id="toggleByPincode" value="byPincode">By Pincode</oj-option>
+                        </oj-buttonset-one>
 
-                    <oj-bind-if test="[[searchBy() === 'byDistrict']]">
-                        <oj-label for="state">Select State</oj-label>
-                        <oj-select-single id="state"
-                            data="[[stateArrayData]]"
-                            value="{{selectedState}}"
-                            on-value-changed="[[setDistrict]]"
-                            style="max-width: 20rem">
-                        </oj-select-single>
-                        <oj-label for="district">Select District</oj-label>
-                        <oj-select-single id="district"
-                            data="[[districtArrayData]]"
-                            value="{{selectedDistrict}}"
-                            on-value-changed="[[callAPI]]"
-                            style="max-width: 20rem">
-                        </oj-select-single>
-                        <!-- <oj-button id="byDistrict" class="oj-button-sm" on-oj-action="[[callAPI]]" style="margin-top: 7px;" disabled="{{isDistrictValid}}">
-                            Search by District
-                        </oj-button> -->
-                    </oj-bind-if>
-                    <oj-bind-if test="[[searchBy() === 'byPincode']]">
-                        <oj-label for="pincode">Enter Pincode</oj-label>
-                        <oj-input-text id="pincode" 
-                            value="{{pincode}}" 
-                            raw-value={{rawPincode}} 
-                            on-raw-value-changed="[[verifyPincode]]"
-                            length.max="6"
-                            clear-icon="always">
-                        </oj-input-text>
-                        <p><span><oj-bind-text value="[[pincodeError]]"></oj-bind-text></span></p>
-                        <oj-button id="byPincode" class="oj-button-sm" on-oj-action="[[callAPI]]" style="margin-top: 7px;" disabled="{{isPincodeValid}}">
-                            Search by Pincode
-                        </oj-button>
-                    </oj-bind-if>
+                        <oj-bind-if test="[[searchBy() === 'byDistrict']]">
+                            <oj-label for="state">Select State</oj-label>
+                            <oj-select-single id="state"
+                                data="[[stateArrayData]]"
+                                value="{{selectedState}}"
+                                on-value-changed="[[setDistrict]]"
+                                style="max-width: 20rem">
+                            </oj-select-single>
+                            <oj-label for="district">Select District</oj-label>
+                            <oj-select-single id="district"
+                                data="[[districtArrayData]]"
+                                value="{{selectedDistrict}}"
+                                on-value-changed="[[callAPI]]"
+                                style="max-width: 20rem">
+                            </oj-select-single>
+                            <!-- <oj-button id="byDistrict" class="oj-button-sm" on-oj-action="[[callAPI]]" style="margin-top: 7px;" disabled="{{isDistrictValid}}">
+                                Search by District
+                            </oj-button> -->
+                        </oj-bind-if>
+                        <oj-bind-if test="[[searchBy() === 'byPincode']]">
+                            <oj-label for="pincode">Enter Pincode</oj-label>
+                            <oj-input-text id="pincode" 
+                                value="{{pincode}}" 
+                                raw-value={{rawPincode}} 
+                                on-raw-value-changed="[[verifyPincode]]"
+                                length.max="6"
+                                clear-icon="always">
+                            </oj-input-text>
+                            <p><span><oj-bind-text value="[[pincodeError]]"></oj-bind-text></span></p>
+                            <oj-button id="byPincode" class="oj-button-sm" on-oj-action="[[callAPI]]" style="margin-top: 7px;" disabled="{{isPincodeValid}}">
+                                Search by Pincode
+                            </oj-button>
+                        </oj-bind-if>
+                    </div>
                 </div>
-            </div>
-            <div id="componentDemoContent" style="width: 1px; min-width: 100%;">
-                
-                <oj-table id='table' style="margin: 10px;"aria-label='Available Centers'
-                        data='[[dataprovider]]'
-                        selection-mode='{"row": "multiple", "column": "multiple"}'
-                        dnd='{"reorder": {"columns": "enabled"}}'
-                        scroll-policy='loadMoreOnScroll'
-                        scroll-policy-options='{"fetchSize": 10}'
-                        columns='[{"headerText": "Center Name", 
-                                    "field": "name",
-                                    "headerClassName": "oj-sm-only-hide",
-                                    "className": "oj-sm-only-hide",
-                                    "resizable": "enabled"},
-                                {"headerText": "Address", 
-                                    "field": "address",
-                                    "headerClassName": "oj-sm-only-hide",
-                                    "className": "oj-sm-only-hide",
-                                    "resizable": "enabled"},
+                <div id="componentDemoContent" style="width: 1px; min-width: 100%;">
+                    
+                    <oj-table id='table' style="margin: 10px;"aria-label='Available Centers'
+                            data='[[dataprovider]]'
+                            dnd='{"reorder": {"columns": "enabled"}}'
+                            scroll-policy='loadMoreOnScroll'
+                            scroll-policy-options='{"fetchSize": 10}'
+                            columns='[{"headerText": "Center Name", 
+                                        "field": "name",
+                                        "headerClassName": "oj-sm-only-hide",
+                                        "className": "oj-sm-only-hide",
+                                        "width": "240px",
+                                        "resizable": "enabled"},
+                                    {"headerText": "Address", 
+                                        "field": "address",
+                                        "headerClassName": "oj-sm-only-hide",
+                                        "className": "oj-sm-only-hide",
+                                        "width": "560px",
+                                        "resizable": "enabled"},
                                     {"headerText": "Pincode", 
-                                    "field": "pincode",
-                                    "headerClassName": "oj-sm-only-hide",
-                                    "className": "oj-sm-only-hide",
-                                    "resizable": "enabled"},
-                                {"headerText": "Available seats", 
-                                    "field": "available_capacity",
-                                    "headerClassName": "oj-sm-only-hide",
-                                    "className": "oj-sm-only-hide",
-                                    "resizable": "enabled"},
-                                {"headerText": "Min Age", 
-                                    "field": "min_age_limit",
-                                    "headerClassName": "oj-sm-only-hide",
-                                    "className": "oj-sm-only-hide",
-                                    "resizable": "enabled"},
+                                        "field": "pincode",
+                                        "headerClassName": "oj-sm-only-hide",
+                                        "className": "oj-sm-only-hide",
+                                        "width": "100px",
+                                        "resizable": "enabled"},
+                                    {"headerText": "Available seats", 
+                                        "field": "available_capacity",
+                                        "headerClassName": "oj-sm-only-hide",
+                                        "className": "oj-sm-only-hide",
+                                        "width": "135px",
+                                        "resizable": "enabled"},
+                                    {"headerText": "Min Age", 
+                                        "field": "min_age_limit",
+                                        "headerClassName": "oj-sm-only-hide",
+                                        "className": "oj-sm-only-hide",
+                                        "width": "110px",
+                                        "resizable": "enabled"},
                                     {"headerText": "Vaccine", 
-                                    "field": "vaccine",
-                                    "headerClassName": "oj-sm-only-hide",
-                                    "className": "oj-sm-only-hide",
-                                    "resizable": "enabled"}]'
-                        class='demo-table-container oj-bg-body'>
-              </oj-table>
-
+                                        "field": "vaccine",
+                                        "headerClassName": "oj-sm-only-hide",
+                                        "className": "oj-sm-only-hide",
+                                        "width": "120px",
+                                        "resizable": "enabled"}]'
+                            class='demo-table-container oj-bg-body'>
+                                <template slot="noData">
+                                    <div class="oj-flex oj-sm-align-items-center">
+                                        <div class="oj-flex oj-sm-align-items-center oj-sm-flex-direction-column oj-sm-width-full">
+                                            <span class="oj-sm-padding-2x oj-typography-body-lg">No Results found! Please try a different search.</span>
+                                        </div>
+                                    </div>
+                                </template>
+                </oj-table>
+                </div>
             </div>
+            <!-- Footer -->
+            <footer role="contentinfo" class="oj-web-applayout-footer">
+                <div class="oj-text-color-secondary oj-sm-align-items-center oj-typography-body-sm oj-web-applayout-max-width">
+                    <oj-avatar role="img" initials='WV-no7' shape='circle'  size='xxs' src="assets/wvno7.jpg"
+                        :aria-label="WV-no7"></oj-avatar> 
+                    <span class="oj-sm-align-self-center oj-flex-item oj-sm-padding-2x-horizontal" style="font-weight: bold;">
+                        <a href="https://github.com/WV-no7">Wv.no7</a>
+                    </span>
+                </div>
+            </footer>
         </div>
     </body>
 
